@@ -62,4 +62,7 @@ An empty return vector indicates that there is no satisfying combination of lite
 
 main.cpp contains sample driver code to demonstrate this functionality.
 
+Compile example: g++ main.cpp sat_d.cpp clause.cpp variable.cpp -o main
+
+
 
