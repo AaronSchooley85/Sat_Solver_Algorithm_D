@@ -1,10 +1,37 @@
 # Sat_Solver_Algorithm_D
 This is a satisfiability solver based on Donald Knuth's "algorithm D" in his book "The Art of Computer Programming, Volume 4, fascicle 6".
 
+Executive Summary (i.e. I got things to do, get on with it):
+##################################################################################
+
+Put each CNF clause in an integer vector. Positive integers for positive iterals and negative integers for negative literals.
+Put each of those clauses in a vector of vectors. That is your CNF vector.
+
+std::vector<std::vector<int>> CNF { {1,2}, {-2,3,4}, ... }; // Create the vector of vectors holding the literals in your problem. Note: variables are 1-based.
+sat_d s; // Instantiate the solver.
+std::vector<int> solution = s.solve(CNF); // Pass CNF to solve method. A vector of ints is returned indicating the boolean values.
+ 
+Note: The variables are 1-based. The first variable is called x1, or just 1. The returned solution vector is zero based. The value of x1, or 1, is in solution[0].
+An empty return vector indicates that there is no satisfying combination of literals. I.e. There is no solution.
+0 indicates the variable is set to false.
+1 indicates the variable is set to true.
+-1 indicates that it is a free variable and it doesn't matter what it is set to.
+
+This program finds and returns only one solution. Others may exist.
+
+
+
+More details and a brief explanation of the satisfiability problem:
+####################################################################################
+  
 I am far from an expert on satisfiability solvers but I thought that others could benefit from my efforts to learn about them via Knuth's
 books. This algorithm, "algorithm D" is designed for smaller problems. Larger problems should be solved with a more advanced algorithm. 
-My hope is to implement a more sophisticated algorithm and post that as well. I hope that this small program will help to improve the lives
-of others. Take this code and do what you will with it provided it helps the sum total of humanity in some way and to any degree.
+My hope is to implement a more sophisticated algorithm and post that as well. I felt compelled to post this program as the ones I found 
+online while searching seemed needlessly complicated from an interface perspective. For instance, some wanted the number of clauses or
+variables to be specified prior to solving. While not terribly taxing, such a thing seemed unnecessary. Surely the solver could quickly
+determine this itself. Here is my implementation. Load a vector with the problem, call solve, and get the answer. Simple. I hope that this
+small program will help to improve the lives of others. Take this code and do what you will with it provided it helps the sum total of
+humanity in some way and to any degree.
 
 What is a sat solver? Given a propositional logic function, a sat solver will determine the true or false assignment of each variable in
 the function so that it evaluates to true. The power in this is that most any problem can be converted to propositional logic and therefore
@@ -44,7 +71,7 @@ I wrote this in c++ and as such, I used vectors as they are the bread and butter
 wonder why I went on and on about sets up above since now I'm using a data structure which preserves order. Don't trouble yourself with that detail. It was
 merely for c++ convenience. 
 
-You pass your problem to the solver in a vector of vectors. The inner vectors hold integers, which hold the literals, and the outer vector holds those vectors.
+You pass your problem to the solver in a vector of vectors. The inner vectors hold integers, which are the literals, and the outer vector holds those vectors.
 
 So here is how the above example is given to my solver:
 
