@@ -150,13 +150,12 @@ void sat_d::Initialize(std::vector<std::vector<int>> &input_clauses)
 	std::cout << m << " clauses." << std::endl;
 
 	// Determine the number of unique variables irrespective of sign.
-	std::unordered_set<int> u;
 	for (auto &c : input_clauses)
 	{
 		for (auto &v : c)
 		{
 			int a {std::abs(v)};
-			if (u.count(a) == 0) u.emplace(a);
+			if (a > n) n = a;
 
 			// Encode integers to strictly positive natural numbers.
 			v = 2 * a + (v < 0);
@@ -164,9 +163,7 @@ void sat_d::Initialize(std::vector<std::vector<int>> &input_clauses)
 	}
 		
 	// Number of variables.	
-	n = static_cast<int>(u.size());
 	std::cout << n << " variables." << std::endl;	
-
 
 	// Set the size of the vectors which hold the moves we've performed,
 	// the literals, and the clauses. Knuth's algorithms use 1-based
