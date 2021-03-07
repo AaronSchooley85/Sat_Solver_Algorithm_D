@@ -8,7 +8,9 @@ Put each CNF clause in an integer vector. Positive integers for positive iterals
 Put each of those clauses in a vector of vectors. That is your CNF vector.
 
 std::vector<std::vector<int>> CNF { {1,2}, {-2,3,4}, ... }; // Create the vector of vectors holding the literals in your problem. Note: variables are1-based.
+ 
 sat_d s; // Instantiate the solver.
+
 std::vector<int> solution = s.solve(CNF); // Pass CNF to solve method. A vector of ints is returned indicating the boolean values.
  
 Note: The variables are 1-based. The first variable is called x1, or just 1. The returned solution vector is zero based. The value of x1, or 1, is in solution[0].
@@ -76,13 +78,18 @@ You pass your problem to the solver in a vector of vectors. The inner vectors ho
 So here is how the above example is given to my solver:
 
 std::vector<std::vector<int>> CNF { {1,2}, {-2,3,4}, ... }; // Create the vector of vectors holding the literals in your problem. Note: variables are 1-based.
+ 
 sat_d s; // Instantiate the solver.
+
 std::vector<int> solution = s.solve(CNF); // Pass CNF to solve method. A vector of ints is returned indicating the boolean values.
 
 Note: The variables are 1-based. The first variable is called x1, or just 1. The returned solution vector is zero based. The value of x1, or 1, is in solution[0].
 An empty return vector indicates that there is no satisfying combination of literals. I.e. There is no solution.
+
 0 indicates the variable is set to false.
+
 1 indicates the variable is set to true.
+
 -1 indicates that it is a free variable and it doesn't matter what it is set to. 
 
 
