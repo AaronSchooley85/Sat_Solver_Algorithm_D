@@ -7,7 +7,7 @@ Executive Summary (i.e. I got things to do, get on with it):
 Put each CNF clause in an integer vector. Positive integers for positive iterals and negative integers for negative literals.
 Put each of those clauses in a vector of vectors. That is your CNF vector.
 
-std::vector<std::vector<int>> CNF { {1,2}, {-2,3,4}, ... }; // Create the vector of vectors holding the literals in your problem. Note: variables are 1-based.
+std::vector<std::vector<int>> CNF { {1,2}, {-2,3,4}, ... }; // Create the vector of vectors holding the literals in your problem. Note: variables are1-based.
 sat_d s; // Instantiate the solver.
 std::vector<int> solution = s.solve(CNF); // Pass CNF to solve method. A vector of ints is returned indicating the boolean values.
  
